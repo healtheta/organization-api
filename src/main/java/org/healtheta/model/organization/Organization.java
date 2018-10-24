@@ -2,7 +2,7 @@ package org.healtheta.model.organization;
 
 import org.aspectj.apache.bcel.classfile.Code;
 import org.healtheta.model.common.*;
-
+import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
@@ -52,6 +52,11 @@ public class Organization implements Serializable {
     @Column(name = "_endpoint")
     public List<Reference> endpoint;
 
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL)
+    @JoinColumn(name = "_reference")
+    private Reference reference;
+
     public Identifier getIdentifier() {
         return identifier;
     }
@@ -100,6 +105,14 @@ public class Organization implements Serializable {
         this.contact = contact;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setReference(Reference reference) {
+        this.reference = reference;
+    }
+
     public Long getId() {
         return id;
     }
@@ -136,5 +149,7 @@ public class Organization implements Serializable {
         return contact;
     }
 
-
+    public Reference getReference() {
+        return reference;
+    }
 }
