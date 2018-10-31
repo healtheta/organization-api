@@ -16,7 +16,6 @@ import java.lang.Long;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/organization")
 public class OrganizationController {
     @Autowired
     OrganizationRepo organizationRepo;
